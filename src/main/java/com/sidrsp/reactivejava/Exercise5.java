@@ -18,6 +18,7 @@ public class Exercise5 {
                 () -> System.out.println("Complete")
             );*/
 
+
     // Subscribe to a flux using an implementation of BaseSubscriber
     ReactiveSources.userFlux()
         .subscribe(new MySubscriber<>());
@@ -33,13 +34,13 @@ class MySubscriber<T> extends BaseSubscriber<T> {
   @Override
   protected void hookOnSubscribe(Subscription subscription) {
     System.out.println("Subscribed");
-    request(1);
+    request(1); // backpressure
   }
 
   @Override
   protected void hookOnNext(T value) {
     System.out.println("Received : " + value);
-    request(1);
+    request(1); // backpressure
   }
 
   @Override

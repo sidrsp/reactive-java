@@ -43,6 +43,11 @@ public class Exercise1 {
     StreamSources.userStream()
         .forEach(user -> System.out.println(user.getFirstName()));
 
+    // or
+    StreamSources.userStream()
+        .map(user -> user.getFirstName())
+        .forEach(firstName -> System.out.println(firstName));
+
     System.out.println("----------");
 
     // Print first names in userStream for users that have IDs from number stream

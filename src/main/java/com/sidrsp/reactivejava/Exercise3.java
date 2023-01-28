@@ -2,7 +2,6 @@ package com.sidrsp.reactivejava;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Exercise3 {
 
@@ -12,8 +11,10 @@ public class Exercise3 {
 
     // Get all numbers in the ReactiveSources.intNumbersFlux stream
     // into a List and print the list and its size
-    List<Integer> integers = ReactiveSources.intNumbersFlux().toStream()
-        .collect(Collectors.toList());
+    List<Integer> integers = ReactiveSources.intNumbersFlux()
+        .log()
+        .toStream()  // this is blocking operation and waits till all elements is published
+        .toList();
     System.out.println(integers.size());
     System.out.println(integers);
 
